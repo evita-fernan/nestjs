@@ -24,7 +24,7 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
-  getProducts(
+  getAll(
     @Query('limit') limit = 100,
     @Query('offset') offset = 0,
     @Query('brand') brand: string,
@@ -36,7 +36,7 @@ export class ProductsController {
   }
 
   @Get('filter')
-  getProductFilter() {
+  getFilter() {
     return `yo soy un filter`;
   }
 
@@ -57,6 +57,11 @@ export class ProductsController {
     // };
     return this.productsService.create(payload);
   }
+  // create() {
+  //   return {
+  //     message: 'Creando',
+  //   };
+  // }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() payload: UpdateProductDto) {
