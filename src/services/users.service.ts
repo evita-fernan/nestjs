@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '../entities/user.entity';
-import { CreateUserDto, UpdateUserDto } from '../dtos/user.dtos';
+import { CreateUserDto, UpdateUserDto } from './../dtos/user.dtos';
 
 @Injectable()
 export class UsersService {
@@ -26,6 +26,7 @@ export class UsersService {
   }
 
   create(payload: CreateUserDto) {
+    console.log(payload);
     this.counterId = this.counterId + 1;
     const newUser = {
       id: this.counterId,
