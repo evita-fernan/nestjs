@@ -15,3 +15,4 @@ export class ParseIntPipe implements PipeTransform {
     return val;
   }
 }
+//se valida si es un NaN que indique que no es un número
