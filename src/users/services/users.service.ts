@@ -1,9 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '../entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dtos';
+import { Order } from '../entities/order.entity';
+import { ProductsService } from '../../products/services/products.service';
 
 @Injectable()
 export class UsersService {
+  constructor(private productsService: ProductsService) {}
+
   private counterId = 1;
   private users: User[] = [
     {
@@ -49,4 +53,13 @@ export class UsersService {
   //Se busca un usuario, luego se busca la posición de ese usuario en el array de usuarios
   //Teniendo la posición se actualiza el dato que el usuario quiere actualizar y que viene en el payload
   //Finalmente se retorna el dato actualizado
+
+  getOrderByUser(userId: number): Order {
+    const user = this.findOne(userId);
+    return {
+      date: new Date(),
+      user,
+      products: this.productsService.findAll(),
+    };
+  }
 }

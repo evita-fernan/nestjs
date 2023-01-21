@@ -35,6 +35,11 @@ export class UserController {
     return this.usersService.findOne(userId);
   }
 
+  @Get(':userId/orders')
+  getOrder(@Param('userId', ParseIntPipe) userId: number) {
+    return this.usersService.getOrderByUser(userId);
+  }
+
   @Put(':id')
   update(@Param('id') id: string, @Body() payload: UpdateUserDto) {
     return this.usersService.update(+id, payload);
